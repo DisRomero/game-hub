@@ -1,25 +1,8 @@
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
-
-interface FetchPhotoResponse {
-    albumId: number;
-    id: number;
-    title: string;
-    url: string;
-    thumbnailUrl: string;
-}
+import usePhotos from "../hooks/usePhotos";
 
 const PhotosGrid = () => {
-    const [photos, setPhotos] = useState([]);
-    const [error, setError] = useState("");
-
-    useEffect(() => {
-        apiClient
-            .get<FetchPhotoResponse, any>("/photos")
-            .then((res) => setPhotos(res.data))
-            .catch((err) => setError(err.message));
-    });
+   const {photos, error} = usePhotos();
 
     return (
         <>
