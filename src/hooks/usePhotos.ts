@@ -16,22 +16,30 @@ export interface FetchPhotoResponse extends Array<Photo> {}
 const usePhotos = () => {
     const [photos, setPhotos] = useState<Photo[]>([]);
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const controller = new AbortController();
+
+        setIsLoading(true);
+
         apiClient
             .get<FetchPhotoResponse>("/photos", {signal: controller.signal})
-            .then((res) => setPhotos(res.data))
+            .then((res) => {
+                setPhotos(res.data);
+                setIsLoading(false);
+            })
             .catch((err) => {
                 if(err instanceof CanceledError) return;
-                    setError(err.message)
+                    setError(err.message);
+                    setIsLoading(false);
                 });
 
         return  () => controller.abort();
 
     }, []);
 
-  return {photos, error};
+  return {photos, error, isLoading};
 }
 
 export default usePhotos

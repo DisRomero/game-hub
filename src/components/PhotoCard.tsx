@@ -10,7 +10,7 @@ interface Props {
 
 const PhotoCard = ({ photo } : Props) => {
   return (
-    <Card borderRadius={10} overflow='hidden'>
+    <Card width='300px' borderRadius={10} overflow='hidden'>
         <Image src={photo.thumbnailUrl} />
         <CardBody>
             <Heading fontSize='2xl' >{photo.title}</Heading>
