@@ -2,7 +2,7 @@ import {Icon, Text, HStack } from '@chakra-ui/react';
 import { FaDiceOne, FaDiceTwo, FaDiceThree, FaDiceFour, FaDiceFive, FaDiceSix, FaDice } from 'react-icons/fa';
 
 interface Props {
-    albumId: Number;
+    albumId: number;
 }
 
 const AlbumIcon = ({ albumId } : Props ) => {

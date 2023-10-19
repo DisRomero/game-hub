@@ -1,7 +1,8 @@
 import React from 'react'
 import { Photo } from '../hooks/usePhotos'
-import { Card, CardBody, Heading, Image, Text } from '@chakra-ui/react';
+import { Card, CardBody, HStack, Heading, Image, Text } from '@chakra-ui/react';
 import AlbumIcon from './AlbumIcon';
+import PhotoId from './PhotoId';
 
 interface Props {
     photo: Photo;
@@ -13,8 +14,11 @@ const PhotoCard = ({ photo } : Props) => {
         <Image src={photo.thumbnailUrl} />
         <CardBody>
             <Heading fontSize='2xl' >{photo.title}</Heading>
-            <AlbumIcon albumId={photo.albumId} />
-            
+            <HStack justifyContent='space-between'>
+                <AlbumIcon albumId={photo.albumId} />
+                <PhotoId id={photo.id}/>
+
+            </HStack>
         </CardBody>
     </Card>
   )
