@@ -1,4 +1,4 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image } from "@chakra-ui/react";
 import logo from "../assets/pexels-teona-swift-6913396.jpg";
 import ColorModeSwitch from "./ColorModeSwitch";
 

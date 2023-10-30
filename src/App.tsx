@@ -1,7 +1,6 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import PhotosGrid from "./components/PhotosGrid";
-import AlbumList from "./components/AlbumList";
+import UsersGrid from "./components/UserGrid";
 
 
 function App() {
@@ -17,11 +16,11 @@ function App() {
             </GridItem>
             <Show above="lg">
                 <GridItem area="aside" > 
-                    <AlbumList/>
+                    'aside'
                 </GridItem>
             </Show>
             <GridItem area="main">
-                <PhotosGrid/>
+                <UsersGrid/>
             </GridItem>
         </Grid>
     );
