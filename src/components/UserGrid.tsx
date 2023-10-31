@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { Text } from "@chakra-ui/react";
-import apiClient from '../services/api-client';
-
-interface Users {
-    id: number;
-    firstName: string;
-    lastName: string;
-}
-
-interface FetchCartsResponde {
-    total: number;
-    users: Users[]
-}
+import useUsers from "../hooks/useUsers";
 
 const UsersGrid = () => {
-    const [users, setUsers] = useState<Users[]>([]);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        apiClient.get<FetchCartsResponde>('/users')
-            .then(res => setUsers(res.data.users))
-            .catch(err => setError(err.message));
-    })
+    const { users, error } = useUsers();
 
     return (
         <>
@@ -30,8 +11,6 @@ const UsersGrid = () => {
                 {users.map(user => <li key={user.id}>{user.firstName + ' ' + user.lastName}</li>)}
             </ul>
         </>
-
-
     )
 };
 
