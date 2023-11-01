@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react';
 import apiClient from '../services/api-client';
 import { CanceledError } from 'axios';
 
-interface Users {
+export interface Bank {
+    iban: string;
+    cardType: string;
+    currency: string;
+}
+
+export interface User {
     id: number;
     firstName: string;
     lastName: string;
+    image: string;
+    bank: Bank[];
 }
 
 interface FetchCartsResponde {
     total: number;
-    users: Users[];
+    users: User[];
 }
 
 const useUsers = () => {
-    const [users, setUsers] = useState<Users[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
