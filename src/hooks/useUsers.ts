@@ -14,6 +14,7 @@ export interface User {
     lastName: string;
     image: string;
     bank: Bank[];
+    bloodGroup: string;
 }
 
 interface FetchCartsResponde {

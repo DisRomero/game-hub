@@ -1,7 +1,8 @@
 import React from 'react'
 import { User } from '../hooks/useUsers'
-import { Card, CardBody, Heading, Image } from '@chakra-ui/react'
+import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
 import { CardBankIcon } from './CardBankIcon';
+import BloodType from './BloodType';
 
 interface Props {
     user: User;
@@ -14,7 +15,10 @@ const UserCard = ({ user }: Props) => {
                 <Image src={user.image} />
                 <CardBody>
                     <Heading fontSize='2xl'>{user.firstName + ' ' + user.lastName}</Heading>
-                    <CardBankIcon bank={user.bank} />
+                    <HStack justifyContent='space-between'>
+                        <CardBankIcon bank={user.bank} />
+                        <BloodType bloodGroup={user.bloodGroup} />
+                    </HStack>
                 </CardBody>
             </Card>
         </>
