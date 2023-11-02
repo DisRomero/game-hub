@@ -25,23 +25,28 @@ interface FetchCartsResponde {
 const useUsers = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [error, setError] = useState('');
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
 
         const controller = new AbortController();
-
+        setLoading(true);
         apiClient.get<FetchCartsResponde>('/users', { signal: controller.signal })
-            .then(res => setUsers(res.data.users))
+            .then(res => {
+                setUsers(res.data.users);
+                setLoading(false);
+            })
             .catch(err => {
                 if (err instanceof CanceledError) return;
-                setError(err.message)
+                setError(err.message);
+                setLoading(false);
             });
 
         return () => controller.abort();
 
     }, []);
 
-    return { users, error };
+    return { users, error, isLoading };
 }
 
 export default useUsers;

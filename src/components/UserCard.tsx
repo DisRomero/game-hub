@@ -11,7 +11,7 @@ interface Props {
 const UserCard = ({ user }: Props) => {
     return (
         <>
-            <Card borderRadius={10} overflow='hidden'>
+            <Card>
                 <Image src={user.image} />
                 <CardBody>
                     <Heading fontSize='2xl'>{user.firstName + ' ' + user.lastName}</Heading>
