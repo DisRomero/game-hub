@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import apiClient from '../services/api-client';
-import { CanceledError } from 'axios';
+import useData from './useData';
 
 export interface Bank {
     iban: string;
@@ -17,36 +15,7 @@ export interface User {
     bloodGroup: string;
 }
 
-interface FetchCartsResponde {
-    total: number;
-    users: User[];
-}
-
-const useUsers = () => {
-    const [users, setUsers] = useState<User[]>([]);
-    const [error, setError] = useState('');
-    const [isLoading, setLoading] = useState(false);
-
-    useEffect(() => {
-
-        const controller = new AbortController();
-        setLoading(true);
-        apiClient.get<FetchCartsResponde>('/users', { signal: controller.signal })
-            .then(res => {
-                setUsers(res.data.users);
-                setLoading(false);
-            })
-            .catch(err => {
-                if (err instanceof CanceledError) return;
-                setError(err.message);
-                setLoading(false);
-            });
-
-        return () => controller.abort();
-
-    }, []);
-
-    return { users, error, isLoading };
-}
+const useUsers = () => useData<User>("/users");
 
 export default useUsers;
+
